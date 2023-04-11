@@ -1,0 +1,11 @@
+FROM amazoncorretto:11-alpine-jdk
+
+EXPOSE 3200
+
+ADD target/project-consulting.jar project-consulting.jar
+
+# ENTRYPOINT ["java", "-jar", "project-consulting.jar"]
+
+# docker build -t myorg/myapp .
+# $ docker run -p 9000:9000 myorg/myapp --server.port=9000
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /project-consulting.jar ${0} ${@}"]
